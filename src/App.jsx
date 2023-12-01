@@ -36,7 +36,11 @@ function App() {
     <Search handleSearch={handleSearch}/>
     { 
       list.map((food, i) => {
-        return <Line key={i} item={food} searching={searchInput} />
+        return <Line 
+          key={i} 
+          name={food.name} 
+          description={food.description} 
+          searching={searchInput} />
       })
     }
     </div>
