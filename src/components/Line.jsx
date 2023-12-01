@@ -1,7 +1,7 @@
 
 export default function Line({ name, description, searching }) {
   
-  function highlightText(string) {
+  function highlightText(string, width) {
     let result = string
 
     // start highlighting when there is something to look for    
@@ -15,32 +15,20 @@ export default function Line({ name, description, searching }) {
         let highlight = string.slice(firstIndex, lastIndex)
         let after = string.slice(lastIndex)
 
-        // console.log('before', before)
-        // console.log('highlight', highlight)
-        // console.log('after', after)
-  
-        result = `${before}<mark>${highlight}<mark/>${after}`
+        return (
+          <p style={{ width: width, textAlign: 'left' }}>{before}<mark>{highlight}</mark>{after}</p>
+        )
       }
     }
     return (
-      <p style={{
-          width: '20%', 
-          textAlign: 'left'
-        }}>{result}</p>
+      <p style={{ width: width, textAlign: 'left' }}>{result}</p>
     )
   }
 
   return (
-    <div style={{
-      display: 'flex',
-      flexDirection: 'row',
-      width: 500,
-      }} >
-        {
-          highlightText(name)
-        }
-      {/* <p style={{width: '20%', textAlign: 'left'}} >{item?.name}</p> */}
-      <p style={{width: '80%', textAlign: 'left'}} >{description}</p>
+    <div style={{ display: 'flex', flexDirection: 'row', width: 500 }} >
+      { highlightText(name, "20%") }
+      { highlightText(description, "80%") }
     </div>
   )
 }
